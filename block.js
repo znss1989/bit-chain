@@ -1,6 +1,6 @@
 class Block {
-  constructor(timeStamp, lastHash, hash, data) {
-    this.timeStamp = timeStamp;
+  constructor(timestamp, lastHash, hash, data) {
+    this.timestamp = timestamp;
     this.lastHash = lastHash;
     this.hash = hash;
     this.data = data;
@@ -8,7 +8,7 @@ class Block {
 
   display() {
     return `Block -
-  Timestamp: ${this.timeStamp}
+  Timestamp: ${this.timestamp}
   Last Hash: ${this.lastHash.substring(0, 10)}
   Hash: ${this.hash.substring(0, 10)}
   data: ${this.data}`;
@@ -16,6 +16,13 @@ class Block {
 
   static genesis() {
     return new this('Genesis time', '---', 'f1r57-h45h', []); // this refers to the class
+  }
+
+  static mineBlock(lastBock, data) {
+    const timestamp = Date.now();
+    const lastHash = lastBock.hash;
+    const hash = 'TBD'; // to be implemented
+    return new this(timestamp, lastHash, hash, data);
   }
 }
 
