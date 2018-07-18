@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 
 const Blockchain = require('../blockchain');
 
-const PORT = process.env.PORT || 3001; // set with command like: PORT=3002 npm run dev
+const HTTP_PORT = process.env.PORT || 3001; // set with command like: PORT=3002 npm run dev
 const blockchain = new Blockchain();
 
 const app = express();
@@ -19,6 +19,6 @@ app.post('/mine', (req, res) => {
   res.redirect('/blocks');
 });
 
-app.listen(PORT, () => {
-  console.log(`Listening on port: ${PORT}...`);
+app.listen(HTTP_PORT, () => {
+  console.log(`Listening on port: ${HTTP_PORT}...`);
 });
