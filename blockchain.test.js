@@ -33,4 +33,16 @@ describe('Blockchain', () => {
     blockchain2.chain[1].data = 'not foo';
     expect(Blockchain.isValidChain(blockchain2.chain)).toBe(false);
   });
+
+  it('replaces the chain with valid new chain', () => {
+    blockchain2.addBlock('goo');
+    blockchain.replaceChain(blockchain2.chain);
+    expect(blockchain.chain).toEqual(blockchain2.chain);
+  });
+
+  it('does not replace the chain with new chain no longer than current', () => {
+    blockchain.addBlock('foo');
+    blockchain.replaceChain(blockchain2.chain);
+    expect(blockchain.chain).not.toEqual(blockchain2.chain);
+  });
 });
