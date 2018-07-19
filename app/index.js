@@ -17,7 +17,7 @@ app.get('/blocks', (req, res) => {
 
 app.post('/mine', (req, res) => {
   const block = blockchain.addBlock(req.body.data); // validation TBD...
-  console.log(`New block added: ${block.toString()}`);
+  console.log(`New block added: ${block.display()}`);
   res.redirect('/blocks');
 });
 
