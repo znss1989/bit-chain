@@ -11,6 +11,10 @@ class TransactionPool {
     }
     this.transactions[this.transactions.indexOf(transactionMatched)] = transaction; // replace rather than change
   }
+
+  existingTransaction(address) {
+    return this.transactions.find(t => t.input.address === address);
+  }
 }
 
 module.exports = TransactionPool;
