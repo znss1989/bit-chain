@@ -25,3 +25,18 @@
 
 // const output = transaction.output.find(output => output.address === wallet.publicKey);
 // console.log(output);
+
+
+
+// const TransactionPool = require('./wallet/transaction-pool');
+// const Transaction = require('.//wallet/transaction');
+// const Wallet = require('./wallet');
+
+// let transactionPool, transaction, wallet;
+
+// transactionPool = new TransactionPool();
+// wallet = new Wallet();
+// transaction = Transaction.newTransaction(wallet, 'r4nd-4dr355', 30);
+// transactionPool.updateOrAddTransaction(transaction);
+// console.log(transaction);
+// console.log(transactionPool.transactions);
