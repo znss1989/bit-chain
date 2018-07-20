@@ -10,7 +10,7 @@ const HTTP_PORT = process.env.HTTP_PORT || 3001; // set with command like: PORT=
 const blockchain = new Blockchain();
 const wallet = new Wallet();
 const transactionPool = new TransactionPool();
-const p2pserver = new P2pServer(blockchain);
+const p2pserver = new P2pServer(blockchain, transactionPool);
 
 const app = express();
 app.use(bodyParser.json());

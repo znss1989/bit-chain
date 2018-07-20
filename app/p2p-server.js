@@ -3,10 +3,15 @@ const Websocket = require('ws');
 // environment sample: HTTP_PORT=3002 P2P_PORT=5002 PEERS=ws://localhost:5001,ws://localhost:5002 npm run dev
 const P2P_PORT = process.env.P2P_PORT || 5001;
 const peers = process.env.PEERS ? process.env.PEERS.split(',') : [];
+const MESSAGE_TYPES = {
+  chain: 'CHAIN',
+  transaction: 'TRANSACTION'
+};
 
 class P2pServer {
-  constructor(blockchain) {
+  constructor(blockchain, transactionPool) {
     this.blockchain = blockchain;
+    this.transactionPool = transactionPool;
     this.sockets = [];
   }
 
@@ -50,8 +55,24 @@ class P2pServer {
     });
   }
 
+  broadcastTransaction(transaction) {
+    this.sockets.forEach(socket => {
+      this.sendTransaction(socket, transaction);
+    });
+  }
+
   sendChain(socket) {
-    socket.send(JSON.stringify(this.blockchain.chain));
+    socket.send(JSON.stringify({
+      type: MESSAGE_TYPES.chain,
+      chain: this.blockchain.chain
+    }));
+  }
+
+  sendTransaction(socket, transaction) {
+    socket.send(JSON.stringify({
+      type: MESSAGE_TYPES.transaction,
+      transaction
+    }));
   }
 }
 
