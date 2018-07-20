@@ -28,7 +28,7 @@ class Wallet {
     if (transaction) {
       return transaction.update(this, recipient, amount);
     }
-    transaction = transaction.newTransaction(this, recipient, amount);
+    transaction = Transaction.newTransaction(this, recipient, amount);
     transactionPool.transactions.push(transaction);
     return transaction;
   }
