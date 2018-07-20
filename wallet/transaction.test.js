@@ -22,6 +22,19 @@ describe('Transaction', () => {
     expect(output.amount).toEqual(amount);
   });
 
+  it('inputs the `balance` of the wallet', () => {
+    expect(transaction.input.amount).toEqual(wallet.balance);
+  });
+
+  it('validates a valid transaction', () => {
+    expect(Transaction.verifyTransaction(transaction)).toBe(true);
+  });
+
+  it('invalidates an invalid transaction', () => {
+    transaction.output[1].amount = 888; // corrupt transaction
+    expect(Transaction.verifyTransaction(transaction)).toBe(false);
+  });
+
   describe('transacting with amount that exceeds balance', () => {
     beforeEach(() => {
       amount = 1000;
