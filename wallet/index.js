@@ -32,6 +32,12 @@ class Wallet {
     transactionPool.transactions.push(transaction);
     return transaction;
   }
+
+  static blockchainWallet() {
+    const blockchainWallet = new Wallet();
+    blockchainWallet.address = 'blockchain-wallet';
+    return blockchainWallet;
+  }
 }
 
 module.exports = Wallet;
